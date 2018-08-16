@@ -1,0 +1,52 @@
+<%- 
+  def print_config(key, value)
+    if value
+      return "#{key} = #{value.to_s}"
+    end
+  end
+-%>
+<%- if @unix_http_server_enable -%>
+[unix_http_server]
+<%= print_config("file", @unix_http_server_file) %>
+<%= print_config("chmod", @unix_http_server_chmod) %>
+<%= print_config("chown", @unix_http_server_chown) %>
+<%= print_config("username", @unix_http_server_username) %>
+<%= print_config("password", @unix_http_server_password) %>
+<%- end -%>
+
+<%- if @inet_http_server_enable -%>
+[inet_http_server]
+port = <%= @inet_http_server_ip %>:<%= @inet_http_server_port %>
+<%= print_config("username", @inet_http_server_username) %>
+<%= print_config("password", @inet_http_server_password) %>
+<%- end -%>
+
+[supervisord]
+<%= print_config("logfile", @logfile) %>
+<%= print_config("logfile_maxbytes", @logfile_maxbytes) %>
+<%= print_config("logfile_backups", @logfile_backups) %>
+<%= print_config("logfile_loglevel", @logfile_loglevel) %>
+<%= print_config("pidfile", @pidfile) %>
+<%= print_config("umask", @umask) %>
+<%= print_config("nodaemon", @nodaemon) %>
+<%= print_config("minfds", @minfds) %>
+<%= print_config("minprocs", @minprocs) %>
+<%= print_config("nocleanup", @nocleanup) %>
+<%= print_config("childlogdir", @childlogdir) %>
+<%= print_config("user", @user) %>
+<%= print_config("directory", @directory) %>
+<%- if @environment -%>
+environment = <%= @environment.map{ |k, v| "#{k}=\"#{v}\""}.join(',') %>
+<%- end -%>
+<%= print_config("strip_ansi", @strip_ansi) %>
+<%= print_config("identifier", @identifier) %>
+
+[supervisorctl]
+<%= print_config("serverurl", @serverurl) %>
+<%= print_config("username", @username) %>
+<%= print_config("password", @password) %>
+<%= print_config("prompt", @prompt) %>
+<%= print_config("history_file", @history_file) %>
+
+[include]
+files = <%= @include_dir %>/*.conf

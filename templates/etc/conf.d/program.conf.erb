@@ -1,0 +1,40 @@
+<%- 
+  def print_config(key, value)
+    if value
+      return "#{key} = #{value.to_s}"
+    end
+  end
+-%>
+[program:<%= @program %>]
+<%= print_config("command", @config['command']) %>
+<%= print_config("process_name", @config['process_name']) %>
+<%= print_config("numprocs", @config['numprocs']) %>
+<%= print_config("numprocs_start", @config['numprocs_start']) %>
+<%= print_config("autostart", @config['autostart']) %>
+<%= print_config("priority", @config['priority']) %>
+<%= print_config("startsecs", @config['startsecs']) %>
+<%= print_config("startretries", @config['startretries']) %>
+<%= print_config("autorestart", @config['autorestart']) %>
+<%= print_config("exitcodes", @config['exitcodes']) %>
+<%= print_config("stopsignal", @config['stopsignal']) %>
+<%= print_config("stopwaitsecs", @config['stopwaitsecs']) %>
+<%= print_config("stopasgroup", @config['stopasgroup']) %>
+<%= print_config("killasgroup", @config['killasgroup']) %>
+<%= print_config("user", @config['user']) %>
+<%= print_config("redirect_stderr", @config['redirect_stderr']) %>
+<%= print_config("stdout_logfile", @config['stdout_logfile']) %>
+<%= print_config("stdout_logfile_maxbytes", @config['stdout_logfile_maxbytes']) %>
+<%= print_config("stdout_logfile_backups", @config['stdout_logfile_backups']) %>
+<%= print_config("stdout_capture_maxbytes", @config['stdout_capture_maxbytes']) %>
+<%= print_config("stdout_events_enabled", @config['stdout_events_enabled']) %>
+<%= print_config("stderr_logfile", @config['stderr_logfile']) %>
+<%= print_config("stderr_logfile_maxbytes", @config['stderr_logfile_maxbytes']) %>
+<%= print_config("stderr_logfile_backups", @config['stderr_logfile_backups']) %>
+<%= print_config("stderr_capture_maxbytes", @config['stderr_capture_maxbytes']) %>
+<%= print_config("stderr_events_enabled", @config['stderr_events_enabled']) %>
+<%- if @config['environment'] -%>
+environment = <%= @config['environment'].map{ |k, v| "#{k}=\"#{v}\""}.join(',') %>
+<%- end -%>
+<%= print_config("directory", @config['directory']) %>
+<%= print_config("umask", @config['umask']) %>
+<%= print_config("serverurl", @config['serverurl']) %>
