@@ -1,6 +1,6 @@
 supervisor::packages:
   - supervisor
-supervisor::service: supervisord
+supervisor::service: supervisor
 supervisor::config_dir: /etc/supervisor
 supervisor::config_file: "%{hiera('supervisor::config_dir')}/supervisord.conf"
 supervisor::include_dir: "%{hiera('supervisor::config_dir')}/conf.d"
