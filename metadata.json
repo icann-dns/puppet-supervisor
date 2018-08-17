@@ -2,9 +2,10 @@
   "name": "icann-supervisor",
   "version": "0.1.0",
   "author": "john.bond@icann.org",
-  "summary": "",
+  "summary": "module to manage suppervisor",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/icann-dns/puppet-supervisor",
+  "issues_url": "https://github.com/icann-dns/puppet-supervisor/issues",
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 4.25.1 <5.0.0"}
   ],
