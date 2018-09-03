@@ -1,6 +1,6 @@
 {
   "name": "icann-supervisor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "john.bond@icann.org",
   "summary": "module to manage suppervisor",
   "license": "Apache-2.0",
