@@ -86,7 +86,7 @@ describe 'supervisor' do
           )
         end
         it do
-          is_expected.to contain_service('supervisord').with(
+          is_expected.to contain_service('supervisor').with(
             ensure: 'running',
             enable: true,
             hasrestart: true,

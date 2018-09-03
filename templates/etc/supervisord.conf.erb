@@ -48,5 +48,8 @@ environment = <%= @environment.map{ |k, v| "#{k}=\"#{v}\""}.join(',') %>
 <%= print_config("prompt", @prompt) %>
 <%= print_config("history_file", @history_file) %>
 
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
 [include]
 files = <%= @include_dir %>/*.conf
