@@ -19,18 +19,18 @@ describe 'supervisor' do
         end
         it do
           is_expected.to contain_file(
-            '/etc/supervisor/conf.d'
+            '/etc/supervisor/conf.d',
           ).with_ensure('directory')
         end
         it do
           is_expected.to contain_file(
-            '/etc/supervisor/supervisord.conf'
+            '/etc/supervisor/supervisord.conf',
           ).with_ensure('file').with_content(
             %r{
             \[unix_http_server\]
             \s+file\s=\s/var/run/supervisor.sock
             \s+chmod\s=\s0700
-            }x
+            }x,
           ).with_content(
             %r{
             \[supervisord\]
@@ -38,51 +38,51 @@ describe 'supervisor' do
             \s+pidfile\s=\s/var/run/supervisord.pid
             \s+nodaemon\s=\strue
             \s+childlogdir\s=\s/var/log/supervisor
-            }x
+            }x,
           ).with_content(
             %r{
             \[supervisorctl\]\n
             serverurl\s=\sunix:///var/run/supervisor.sock
-            }x
+            }x,
           ).with_content(
             %r{
             \[include\]\n
             files\s=\s/etc/supervisor/conf.d/\*.conf
-            }x
+            }x,
           ).without_content(
-            %r{inet_http_server}
+            %r{inet_http_server},
           ).without_content(
-            %r{logfile_maxbytes}
+            %r{logfile_maxbytes},
           ).without_content(
-            %r{logfile_backups}
+            %r{logfile_backups},
           ).without_content(
-            %r{logfile_loglevel}
+            %r{logfile_loglevel},
           ).without_content(
-            %r{umask}
+            %r{umask},
           ).without_content(
-            %r{minfds}
+            %r{minfds},
           ).without_content(
-            %r{minprocs}
+            %r{minprocs},
           ).without_content(
-            %r{nocleanup}
+            %r{nocleanup},
           ).without_content(
-            %r{user}
+            %r{user},
           ).without_content(
-            %r{directory}
+            %r{directory},
           ).without_content(
-            %r{environment}
+            %r{environment},
           ).without_content(
-            %r{strip_ansi}
+            %r{strip_ansi},
           ).without_content(
-            %r{identifier}
+            %r{identifier},
           ).without_content(
-            %r{username}
+            %r{username},
           ).without_content(
-            %r{password}
+            %r{password},
           ).without_content(
-            %r{prompt}
+            %r{prompt},
           ).without_content(
-            %r{history_file}
+            %r{history_file},
           )
         end
         it do
@@ -189,7 +189,7 @@ describe 'supervisor' do
           # Add Check to validate change was successful
         end
         context 'environment' do
-          before(:each) { params.merge!(environment: {'foo' => 'bar'}) }
+          before(:each) { params.merge!(environment: { 'foo' => 'bar' }) }
           it { is_expected.to compile }
           # Add Check to validate change was successful
         end
@@ -286,22 +286,22 @@ describe 'supervisor' do
         context 'programs' do
           before(:each) do
             params.merge!(
-              programs: { 
+              programs: {
                 'foobar' => {
-                  'command' => '/foo/bar'
-                }
-              }
+                  'command' => '/foo/bar',
+                },
+              },
             )
           end
           it { is_expected.to compile }
           it do
             is_expected.to contain_file(
-              '/etc/supervisor/conf.d/foobar.conf'
+              '/etc/supervisor/conf.d/foobar.conf',
             ).with_ensure('file').with_content(
               %r{
               \[program:foobar\]\n
               command\s=\s/foo/bar
-              }x
+              }x,
             )
           end
         end
